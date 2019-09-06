@@ -1,0 +1,85 @@
+﻿<Page x:Class="LogX.Views.BatchJobGroupView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LogX.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="BatchJobGroupView" >
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Batch Job Groups View" FontWeight="DemiBold" FontFamily="Helvetica" FontSize="15"/>
+        <DatePicker Name="DatePickerFromDate" Grid.Row="0" Width="120" ToolTip="The date from which to look for changes, usually the start date of the project" Height="30" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center" SelectedDate="{Binding FromDate, Mode=TwoWay}" VerticalContentAlignment="Center" />
+        <DataGrid Name="DataGridSearch" Grid.Row="1" RowHeight="30" Margin="0,0,5,0" ItemsSource="{Binding BatchJobGroups}" AutoGenerateColumns="False" PreviewKeyDown="PreviewKeyDownHandler" BorderBrush="DarkGray" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="DarkGray" CanUserAddRows="True" CanUserDeleteRows="True" CellEditEnding="DataGridSearchCellEditEnding" BeginningEdit="DataGridSearchBeginningEdit">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="White" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Batch Job Group Name" Binding="{Binding Name, Mode=TwoWay}" IsReadOnly="False"/>
+                <DataGridTextColumn Width="*" Header="Execution Status" Binding="{Binding Status}" IsReadOnly="True"/>
+                <DataGridTextColumn Width="*" Header="Comparison Result" Binding="{Binding Result}" IsReadOnly="True"/>
+                <DataGridTextColumn Width="*" Header="Last Executed" Binding="{Binding LastExecuted}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="View">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="ButtonViewLog" Content="Log" Click="ButtonViewLogClick" >
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Result}" Value="Failed">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontFamily" Value="Helvetica"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Trigger>
+                        <Trigger Property="IsEditing" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+        <Button Grid.Row="2" Width="100" Height="25" Content="Load" Click="ButtonLoadClick" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <Button Grid.Row="2" Width="100" Height="25" Content="Save as Scope" Margin="0,0,5,0" Click="ButtonSaveAsScopeClick" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Button Grid.Row="2" Width="100" Height="25" Content="Get from Scope" Margin="0,0,115,0" Click="ButtonGetFromScopeClick" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+    </Grid>
+</Page>

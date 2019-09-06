@@ -1,0 +1,22 @@
+﻿<Page x:Class="LogX.Views.NavigationView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LogX.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="NavigationView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Name="ButtonBJG" Grid.Row="0" Margin="0,8,0,0" Content="&#xE7C4;" Style="{DynamicResource NavButtton}" ToolTip="Batch Job Groups" Click="ButtonBJGClick"/>
+        <Button Name="ButtonReports" Grid.Row="1" Content="&#xE81B;" Style="{DynamicResource NavButtton}" ToolTip="Reports" Click="ButtonReportsClick"/>
+        <Button Name="ButtonDashboards" Grid.Row="2" Content="&#xE9D9;" Style="{DynamicResource NavButtton}" ToolTip="Dashboards" Click="ButtonDashboardsClick"/>
+    </Grid>
+</Page>

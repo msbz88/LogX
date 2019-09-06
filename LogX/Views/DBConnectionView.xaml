@@ -1,0 +1,54 @@
+﻿<Page x:Class="LogX.Views.DBConnectionView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LogX.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="360" d:DesignWidth="400"
+      Title="DBConnectionPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="DarkGray" Grid.Row="0" BorderThickness="1" Width="400" Height="360">
+        <StackPanel>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <!--Master-->
+                <Label Content="Master Database" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Helvetica" FontSize="14" FontWeight="DemiBold"/>
+                <TextBox Name="TextBoxMasterUserName" Grid.Row="1" Tag="Username" Grid.Column="0" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Name="TextBoxMasterPassword" Grid.Row="2" Tag="Password" Grid.Column="0" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Name="TextBoxMasterHost" Grid.Row="3" Tag="Host" Grid.Column="0" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Name="TextBoxMasterPort" Grid.Row="4" Tag="Port" Grid.Column="0" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" PreviewTextInput="TextBoxMasterPortPreviewTextInput"/>
+                <TextBox Name="TextBoxMasterDBName" Grid.Row="5" Tag="Database name" Grid.Column="0" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" LostFocus="TextBoxMasterDBNameLostFocus"/>
+                <TextBox Name="TextBoxMasterSid" Grid.Row="6" Tag="Sid" Grid.Column="0" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" LostFocus="TextBoxMasterSidLostFocus"/>
+                <!--Test-->
+                <Label Content="Test Database" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Helvetica" FontSize="14" FontWeight="DemiBold"/>
+                <TextBox Name="TextBoxTestUserName" Grid.Row="1" Tag="Username" Grid.Column="1" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Name="TextBoxTestPassword" Grid.Row="2" Tag="Password" Grid.Column="1" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Name="TextBoxTestHost" Grid.Row="3" Tag="Host" Grid.Column="1" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Name="TextBoxTestPort" Grid.Row="4" Tag="Port" Grid.Column="1" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" PreviewTextInput="TextBoxMasterPortPreviewTextInput"/>
+                <TextBox Name="TextBoxTestDBName" Grid.Row="5" Tag="Database name" Grid.Column="1" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" LostFocus="TextBoxTestDBNameLostFocus"/>
+                <TextBox Name="TextBoxTestSid" Grid.Row="6" Tag="Sid" Grid.Column="1" Style="{DynamicResource TextBoxVM}" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" LostFocus="TextBoxTestSidLostFocus"/>
+                <Button Content="Connect and Save" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Width="120" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonConnectAndSave"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+        <Label Grid.Row="1" Name="LabelMessage" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Helvetica" FontSize="13" />
+    </Grid>
+</Page>

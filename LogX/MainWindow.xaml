@@ -1,0 +1,25 @@
+﻿<Window x:Class="LogX.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogX"
+        mc:Ignorable="d"
+        Title="LogX" Height="500" Width="1000" MinHeight="550" MinWidth="750">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Frame x:Name="WorkArea" Grid.Row="0" Grid.Column="1" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="AllArea" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="NavArea" Grid.Row="0" Grid.Column="0" NavigationUIVisibility="Hidden" />
+        <StatusBar Name="MainStatusBar" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="20" Background="White">
+            <TextBlock Name="StatusBarContent" Padding="5,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Helvetica"/>
+        </StatusBar>
+    </Grid>
+</Window>
