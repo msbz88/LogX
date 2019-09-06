@@ -30,6 +30,7 @@ namespace LogX {
 
         public MainWindow() {
             InitializeComponent();
+            Title = "LogX (version " + Models.Version.GetVersion() + ")";
             DBConnectionView = new DBConnectionView();
             DBConnectionView.DBConnected += OnDBConnected;
             RenderViews();
