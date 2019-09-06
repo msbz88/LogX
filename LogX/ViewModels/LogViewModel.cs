@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LogX.ViewModels {
-    public class LogsViewModel {
+    public class LogViewModel {
     }
 }

@@ -27,6 +27,7 @@ namespace LogX.ViewModels {
                 OnPropertyChanged("FromDate");
             }
         }
+        private string pathScopeFile = "BJG_scope.txt";
 
         public BatchJobGropViewModel() {
             BatchJobGroups = new ObservableCollection<BatchJobGroup>();
@@ -35,7 +36,7 @@ namespace LogX.ViewModels {
 
         public void InsertFromClipBoard(int index) {
             var text = Clipboard.GetText();
-            var data = text.Split(new string[] { Environment.NewLine },StringSplitOptions.None);
+            var data = text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
             foreach (var item in data) {
                 var firstCol = item.Split('\t')[0];
                 bool isExists = BatchJobGroups.Any(i => i.Name == firstCol);
@@ -51,7 +52,7 @@ namespace LogX.ViewModels {
                         BatchJobGroups.Add(bjg);
                     }
                     index++;
-                }             
+                }
             }
         }
 
@@ -72,12 +73,12 @@ namespace LogX.ViewModels {
                     return;
                 } else {
                     foreach (var bjg in BatchJobGroups) {
-                            ExtractLogs(bjg);
-                            bjg.CompareLogs();
+                        ExtractLogs(bjg);
+                        bjg.CompareLogs();
                     }
-                    LogsExtracted?.Invoke(BatchJobGroups.Where(item=>item.Name!="").ToList(), null);
+                    LogsExtracted?.Invoke(BatchJobGroups.Where(item => item.Name != "").ToList(), null);
                 }
-            }  
+            }
         }
 
         private OraSession OpenConnection(string name) {
@@ -106,7 +107,7 @@ namespace LogX.ViewModels {
         }
 
         public DateTime GetProjectStartDate() {
-            string query = "select max(laststartts) from BATCHSTATS";           
+            string query = "select max(laststartts) from BATCHSTATS";
             var masterSession = new OraSession();
             var conString = masterSession.Load("Master");
             masterSession.OpenConnection(conString);
@@ -120,17 +121,38 @@ namespace LogX.ViewModels {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-        public void SaveAsScope() {
-            File.WriteAllLines("BJG_scope.txt", BatchJobGroups.Select(item=>item.Name));
-        }
-
-        public void LoadFromScope() {
-            var names = File.ReadAllLines("BJG_scope.txt");
-            BatchJobGroups.Clear();
-            foreach (var name in names) {
-                var bjg = new BatchJobGroup(name);
-                BatchJobGroups.Add(bjg);
+        public string SaveAsScope() {
+            try {
+                if (!BatchJobGroups.Any()) {
+                    return "Nothing to save.";
+                }
+                File.WriteAllLines(pathScopeFile, BatchJobGroups.Select(item => item.Name));
+                return "";
+            } catch (Exception ex) {
+                return ex.Message;
             }
         }
+
+        public string LoadFromScope() {
+            try {
+                if (!File.Exists(pathScopeFile)) {
+                    return "Scope file not yet defined.";
+                }
+                var names = File.ReadAllLines(pathScopeFile);
+                if (!names.Any()) {
+                    return "Scope file is empty.";
+                }
+                BatchJobGroups.Clear();
+                foreach (var name in names) {
+                    var bjg = new BatchJobGroup(name);
+                    BatchJobGroups.Add(bjg);
+                }
+                return "";
+            } catch (Exception ex) {
+                return ex.Message;
+            }
+        }
+
+
     }
 }

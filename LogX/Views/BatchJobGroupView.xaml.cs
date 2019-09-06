@@ -84,13 +84,21 @@ namespace LogX.Views {
         }
 
         private void ButtonSaveAsScopeClick(object sender, RoutedEventArgs e) {
-            BJGViewModel.SaveAsScope();
-            Message.Invoke("Saved to scope file", null);
+            var errorMessage = BJGViewModel.SaveAsScope();
+            if (errorMessage == "") {
+                Message.Invoke("Saved to scope file.", null);
+            }else {
+                Error.Invoke(errorMessage, null);
+            }
         }
 
         private void ButtonGetFromScopeClick(object sender, RoutedEventArgs e) {
-            BJGViewModel.LoadFromScope();
-            Message.Invoke("Loaded from scope file", null);
+            var errorMessage = BJGViewModel.LoadFromScope();
+            if (errorMessage == "") {
+                Message.Invoke("Loaded from scope file.", null);
+            }else {
+                Error.Invoke(errorMessage, null);
+            }          
         }
         
         private void DataGridSearchBeginningEdit(object sender, DataGridBeginningEditEventArgs e) {

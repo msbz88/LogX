@@ -63,9 +63,8 @@
     <Compile Include="Models\DbConnection.cs" />
     <Compile Include="Models\LogLine.cs" />
     <Compile Include="Models\OraSession.cs" />
-    <Compile Include="Models\XMLSerializer.cs" />
     <Compile Include="ViewModels\DBConnectionViewModel.cs" />
-    <Compile Include="ViewModels\LogsViewModel.cs" />
+    <Compile Include="ViewModels\LogViewModel.cs" />
     <Compile Include="ViewModels\BatchJobGropViewModel.cs" />
     <Compile Include="Views\DashboardsView.xaml.cs">
       <DependentUpon>DashboardsView.xaml</DependentUpon>
